@@ -1,0 +1,155 @@
+/*
+    File: hw4.css
+    GUI Assigment: Using the jQuery Plugin/UI with Your Dynamic Table - PART 2: jQuery UI Slider and Tab Widgets
+    Minh Le, Umass Lowell Computer Science, minhtri_le@student.uml.edu
+    Copyright (C) 2021 by Minh Le. 
+    Updated by ML on October 20, 2021 at 7:00pm
+*/
+
+/* increase font-size of legend */
+legend {
+    font-size: 120%;
+}
+
+/* Dislay the form on the left */
+form {
+    float: left;
+}
+
+fieldset {
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+/* table container, this is scroll container */
+#displayTab {
+    margin-top: 50px;
+    overflow: auto;
+    max-width: 988px;
+    max-height: 772px;
+}
+
+/* setup position of textbox */
+#fCol, #fRow {
+    margin-left: 5px;
+}
+
+#eCol, #eRow {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/* Measure the table is readable */
+table {
+   text-align: center;
+   border-collapse: collapse;
+}
+
+td {
+    max-width: 150px;
+    height: 50px;
+    min-width: 50px;
+}
+
+/* 
+    Style for first row (TOP HEADER) 
+    Top header is fixed at top
+    Make the border right is white, except the last square
+    z-index: 1 to measure the left header will display behind the top header (scroll down)
+*/
+table > tr:first-child {
+    background-color: black;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+table > tr:first-child > td {
+    border-right: 2px solid white;
+    border-top: none;
+}
+
+/* No right white at last square */
+table > tr > td:last-child {
+    border-right: 1px solid black;
+}
+
+/*
+    Style for first row (LEFT HEADER) 
+    Left header is fixed at left
+    Make the border right is white, except the last square
+*/
+table > tr:first-child > td:first-child {
+    background-color: white;
+    border: none;
+}
+
+table > tr > td:first-child {
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid white;
+    position: sticky;
+    left: 0;
+}
+
+/* No bottom white at last square */
+table > tr:last-child > td {
+    border-bottom: 1px solid black;
+}
+
+/* Display the table's content with yellow background (chequered)*/
+/* skip the top header, pick the odd tr, then skip the left header, then pick the even td */
+table > tr:not(tr:first-child):nth-child(odd) > td:not(td:first-child):nth-child(even) {
+    background-color: yellow;
+}
+
+/* skip the top header, pick the even tr, then skip the left header, then pick the odd td */
+table > tr:not(tr:first-child):nth-child(even) > td:not(td:first-child):nth-child(odd) {
+    background-color: yellow;
+}
+
+/* Style for the button */
+button {
+    margin-top: 10px;
+    margin-left: 44px;
+}
+
+/* Style for validation labels */
+#fCol-error, #eCol-error, #fRow-error, #eRow-error {
+    color: red;
+    margin-left: 10px;
+}
+
+/* For screen size >= 768px */
+@media only screen and (min-width: 768px) {
+    #displayTab {
+        max-width: 448px;
+        max-height: 390px;
+    }
+    fieldset {
+        margin-right: 50px;
+    }
+}
+
+/* For screen size >= 992px */
+@media only screen and (min-width: 992px) {
+    #displayTab {
+        max-width: 664px;
+        max-height: 502px;
+    }
+    fieldset {
+        margin-right: 50px;
+    }
+}
+
+/* For screen size >= 1200px */
+@media only screen and (min-width: 1200px) {
+    #displayTab {
+        max-width: 934px;
+        max-height: 610px;
+    }
+    fieldset {
+        margin-right: 100px;
+    }
+}

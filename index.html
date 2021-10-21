@@ -1,0 +1,61 @@
+<!--
+    File: index.html
+    GUI Assigment: Using the jQuery Plugin/UI with Your Dynamic Table - PART 1: Validation Plugin
+    Minh Le, Umass Lowell Computer Science, minhtri_le@student.uml.edu
+    Copyright (C) 2021 by Minh Le. 
+    Updated by ML on October 20, 2021 at 7:00pm
+    This website creates an Interactive Dynamic Table and using jquery plugin to validate the input data
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 4 - Part 1</title>
+    <!-- CSS -->
+    <link href="css/hw4.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <form id="createTableForm">
+            <fieldset>
+                <legend>
+                    Enter size of the table:
+                </legend>
+                <p>Vertical (multiplicand)</p>
+                <label>
+                    Start:
+                    <input type="text" id="fCol" name="fCol" size="1">
+                </label>
+                <label id="valFCol"></label>
+                <br />
+                <label>
+                    End:
+                    <input type="text" id="eCol" name="eCol" size="1">
+                </label>
+                <label id="valECol"></label>
+                <p>Horizontal (multiplier)</p>
+                <label>
+                    Start:
+                    <input type="text" id="fRow" name="fRow" size="1">
+                </label>
+                <label id="valFRow"></label>
+                <br />
+                <label>
+                    End:
+                    <input type="text" id="eRow" name="eRow" size="1">
+                </label>
+                <label id="valERow"></label>
+                <br />
+                <button id="btnGen" type="button">Generate</button>
+            </fieldset>
+        </form>
+    </div>
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="js/hw4.js"></script>
+</body>
+
+</html>
