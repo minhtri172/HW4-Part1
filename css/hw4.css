@@ -119,6 +119,7 @@ button {
 #fCol-error, #eCol-error, #fRow-error, #eRow-error {
     color: red;
     margin-left: 10px;
+    font-weight: bold;
 }
 
 /* For screen size >= 768px */

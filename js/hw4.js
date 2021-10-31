@@ -8,72 +8,88 @@
 
 $(document).ready(function () {
 
-    /*jQuery.validator.setDefaults({
-        debug: true,
-        success: "valid"
-    });*/
-
-    // Add new method to validation (check if the number is integer or not)
+    // Add new method to validation (check if the number is an integer or not)
     $.validator.addMethod("integerNumber", function (value, element) {
         return Number.isInteger(Number(value));
-    }, "Please enter an integer number.");
+    }, "Error: This number is decimal. Please enter an integer number.");
 
-    /* 
-        Validate the form:
-        1. no blank field.
-        2. input must be a number
-        3. input must be in the range [-50, 50]
-        4. input must be an integer number
+    // referene: https://stackoverflow.com/questions/26484914/check-if-number-start-with-0-or-00
+    $.validator.addMethod("startZeros", function (value, element) {
+        return !value.match(/^(?:0|00|-0|-00)\d+$/);
+    }, "Error: This number start with 0 or 00. Please remove 0s at the beginning.");
+
+    // referene: https://stackoverflow.com/questions/6067592/regular-expression-to-match-only-alphabetic-characters/6067604
+    $.validator.addMethod("notAlphabet", function (value, element) {
+        return !value.match(/[a-zA-Z]/);
+    }, "Error: This number contains alphabets. Please remove them.");
+
+    /* ################################################
+       #    Validate the form:
+       #    1. no blank field.
+       #    2. input is not alphabets
+       #    3. input is not special characters
+       #    4. input must be in the range [-50, 50]
+       #    5. input must be an integer number
+       #    6. input cannot start with 0 or 00
+       ################################################
     */
     $("#createTableForm").validate({
         rules: {
-            fCol: {
+            fCol: { // first column input
                 required: true,
+                notAlphabet: true,
                 number: true,
                 range: [-50, 50],
-                integerNumber: true
+                integerNumber: true,
+                startZeros: true
             },
-            eCol: {
+            eCol: { // end column input
                 required: true,
+                notAlphabet: true,
                 number: true,
                 range: [-50, 50],
-                integerNumber: true
+                integerNumber: true,
+                startZeros: true
             },
-            fRow: {
+            fRow: { // first row input
                 required: true,
+                notAlphabet: true,
                 number: true,
                 range: [-50, 50],
-                integerNumber: true
+                integerNumber: true,
+                startZeros: true
             },
-            eRow: {
+            eRow: { // end row input
                 required: true,
+                notAlphabet: true,
                 number: true,
                 range: [-50, 50],
-                integerNumber: true
+                integerNumber: true,
+                startZeros: true
             }
         },
 
         // Config error messages
         messages: {
-            fCol: {
-                required: "Please enter a start column number.",
-                number: "Please enter a number.",
-                range: "Please enter a number between -50 and 50."
+            fCol: { // first column input
+                required: "Error: This field is required. Please enter an integer number.",
+                number: "Error: This number contains special characters. Please remove them.",
+                range: "Error: This number is outside of the range[-50, 50]. Please enter a number between -50 and 50."
             },
-            eCol: {
-                required: "Please enter a end column number.",
-                number: "Please enter a number.",
-                range: "Please enter a number between -50 and 50."
+            eCol: { // end column input
+                required: "Error: This field is required. Please enter an integer number.",
+                number: "Error: This number contains special characters. Please remove them.",
+                range: "Error: This number is outside of the range[-50, 50]. Please enter a number between -50 and 50."
             },
-            fRow: {
-                required: "Please enter a start row number.",
-                number: "Please enter a number.",
-                range: "Please enter a number between -50 and 50."
+            fRow: { // first row input
+                required: "Error: This field is required. Please enter an integer number.",
+                number: "Error: This number contains special characters. Please remove them.",
+                range: "Error: This number is outside of the range[-50, 50]. Please enter a number between -50 and 50."
             },
-            eRow: {
-                required: "Please enter a end row number.",
-                number: "Please enter a number.",
-                range: "Please enter a number between -50 and 50."
+            eRow: { // end row input
+                required: "Error: This field is required. Please enter an integer number.",
+                number: "Error: This number contains special characters. Please remove them.",
+                range: "Error: This number is outside of the range[-50, 50]. Please enter a number between -50 and 50."
             }
         }
     });
@@ -101,7 +117,7 @@ $(document).ready(function () {
 
             if (fCol != "" && eCol != "" && fRow != "" && eRow != "") {
 
-                // convert string to numbers
+                // convert string to integer numbers
                 fCol = parseInt(fCol);
                 eCol = parseInt(eCol);
                 fRow = parseInt(fRow);
@@ -113,6 +129,7 @@ $(document).ready(function () {
     });
 
     // Create the table
+    // I converted from javascript from hw3 to jquery hw4
     function createTable(x1, x2, y1, y2) {
 
         // if the table exist, remove it
@@ -129,7 +146,6 @@ $(document).ready(function () {
 
         // This code measure the table is still created 
         // if users input start values > end values
-        // I converted from javascript from hw3 to jquery hw4
         if (x1 > x2 && y1 > y2) { // end start > end col and start row > end row
             for (i = y1; i >= y2 - 1; i--) {
                 if (i == y1) {
