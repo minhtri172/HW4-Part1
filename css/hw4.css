@@ -3,30 +3,31 @@
     GUI Assigment: Using the jQuery Plugin/UI with Your Dynamic Table - PART 2: jQuery UI Slider and Tab Widgets
     Minh Le, Umass Lowell Computer Science, minhtri_le@student.uml.edu
     Copyright (C) 2021 by Minh Le. 
-    Updated by ML on October 20, 2021 at 7:00pm
+    Updated by ML on November 1, 2021 at 7:00pm
 */
+
+/* This code is for screen size < 768px */
 
 /* increase font-size of legend */
 legend {
     font-size: 120%;
 }
 
-/* Dislay the form on the left */
+/* No float when in the extra small screen size */
 form {
-    float: left;
+    float: none;
 }
 
 fieldset {
-    margin-right: 100px;
-    margin-bottom: 100px;
+    margin-right: 10px;
 }
 
 /* table container, this is scroll container */
 #displayTab {
     margin-top: 50px;
     overflow: auto;
-    max-width: 988px;
-    max-height: 772px;
+    max-width: 450px;
+    max-height: 326px;
 }
 
 /* setup position of textbox */
@@ -120,25 +121,40 @@ button {
     color: red;
     margin-left: 10px;
     font-weight: bold;
+    display: block;
+    margin-top: 10px;
 }
 
 /* For screen size >= 768px */
 @media only screen and (min-width: 768px) {
+    /* table container, this is scroll container */
     #displayTab {
         max-width: 448px;
         max-height: 390px;
     }
+
     fieldset {
         margin-right: 50px;
+    }
+
+    form {
+        float: left;
+    }
+
+    /* Display error messages in the same line with inputs*/
+    #fCol-error, #eCol-error, #fRow-error, #eRow-error {
+        display: inline;
     }
 }
 
 /* For screen size >= 992px */
 @media only screen and (min-width: 992px) {
+    /* table container, this is scroll container */
     #displayTab {
         max-width: 664px;
         max-height: 502px;
     }
+
     fieldset {
         margin-right: 50px;
     }
@@ -146,10 +162,12 @@ button {
 
 /* For screen size >= 1200px */
 @media only screen and (min-width: 1200px) {
+    /* table container, this is scroll container */
     #displayTab {
         max-width: 934px;
         max-height: 610px;
     }
+
     fieldset {
         margin-right: 100px;
     }

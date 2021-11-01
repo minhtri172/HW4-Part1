@@ -3,7 +3,7 @@
     GUI Assigment: Using the jQuery Plugin/UI with Your Dynamic Table - PART 1: Validation Plugin
     Minh Le, Umass Lowell Computer Science, minhtri_le@student.uml.edu
     Copyright (C) 2021 by Minh Le. 
-    Updated by ML on October 20, 2021 at 7:00pm
+    Updated by ML on November 1, 2021 at 7:00pm
 */
 
 $(document).ready(function () {
@@ -13,25 +13,31 @@ $(document).ready(function () {
         return Number.isInteger(Number(value));
     }, "Error: This number is decimal. Please enter an integer number.");
 
+    // Check if the input start with 0 or 00
     // referene: https://stackoverflow.com/questions/26484914/check-if-number-start-with-0-or-00
     $.validator.addMethod("startZeros", function (value, element) {
         return !value.match(/^(?:0|00|-0|-00)\d+$/);
     }, "Error: This number start with 0 or 00. Please remove 0s at the beginning.");
 
+    // Check if the input is alphabet
     // referene: https://stackoverflow.com/questions/6067592/regular-expression-to-match-only-alphabetic-characters/6067604
     $.validator.addMethod("notAlphabet", function (value, element) {
         return !value.match(/[a-zA-Z]/);
     }, "Error: This number contains alphabets. Please remove them.");
 
-    /* ################################################
-       #    Validate the form:
-       #    1. no blank field.
-       #    2. input is not alphabets
-       #    3. input is not special characters
-       #    4. input must be in the range [-50, 50]
-       #    5. input must be an integer number
-       #    6. input cannot start with 0 or 00
-       ################################################
+    /* 
+    ################################################################################################
+    #    Validate the form:
+    #    1. no blank field.
+    #    2. input is not alphabets
+    #    3. input is not special characters
+    #    4. input must be in the range [-50, 50]
+    #    5. input must be an integer number
+    #    6. input cannot start with 0 or 00
+    #    NOTE: The "number" in jQuery Validation is check the input not a number
+    #    I created a function check if the input is alphabet, so now
+    #    "number" checks for special characters (not a number = (alphabet + special characters))
+    #################################################################################################
     */
     $("#createTableForm").validate({
         rules: {
@@ -128,8 +134,12 @@ $(document).ready(function () {
         }
     });
 
-    // Create the table
-    // I converted from javascript from hw3 to jquery hw4
+    /* 
+    #############################################################
+    #   Create the table
+    #   I converted from Javascript (hw3) to jQuery
+    #############################################################
+    */
     function createTable(x1, x2, y1, y2) {
 
         // if the table exist, remove it
