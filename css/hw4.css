@@ -125,6 +125,11 @@ button {
     margin-top: 10px;
 }
 
+/* Set invalid inputs border to red */
+#fCol.error, #eCol.error, #fRow.error, #eRow.error {
+    border-color: red;
+}
+
 /* For screen size >= 768px */
 @media only screen and (min-width: 768px) {
     /* table container, this is scroll container */
